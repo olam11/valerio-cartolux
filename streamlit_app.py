@@ -1,4 +1,7 @@
 import streamlit as st
 
-st.title("CARTOLUX")
-st.write("Ceci est un site web en cours de développement pour Valerio delsart moretti")
+st.set_page_config(
+    page_title='CARTOLUX',
+    page_icon=':map:',
+)
+st.write("Ceci est un site web en cours de développement pour Valerio Delsart Moretti")
