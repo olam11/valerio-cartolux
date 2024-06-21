@@ -55,8 +55,34 @@ df = {
 df = pd.DataFrame.from_dict(df, orient='index')
 df = df.transpose()
 st.dataframe(df, use_container_width=True,hide_index=True)
-st.markdown(df.to_html(escape=False),unsafe_allow_html=True)
-st.info("on garde lequel ?")
+grille_de_prix = {"A5":[0.75,0.50,0.50,0.25,0.50,0.50,0.25],"A4":[1,0.50,1,0.50,0.50,0.50,0.25],"A3":[3,1.50,2,1,0.50,0.50,0.25],"A2":[5.50,3,3.50,2.50,0.50,0.50,0.25]}
+with st.form("simulation"):
+    st.write("### SIMULATION")
+    format = st.selectbox(
+    "###### le format :",
+    ("A5", "A4", "A3","A2"))
+    checkbox_couleurs = st.checkbox("deluxe couleurs" )
+    checkbox_integral = st.checkbox("deluxe intégral" )
+    checkbox_realismeplus = st.checkbox("réalisme +" )
+    checkbox_couleurplus = st.checkbox("couleur +" )
+    element_princ = st.slider("éléments princ.",0,10,0)
+    element_sec = st.slider("éléments sec.",0,10,0)
+    # Every form must have a submit button.
+    submitted = st.form_submit_button("Submit")
+    if submitted:
+        listdeprixparformat = grille_de_prix[format]
+        prix = listdeprixparformat[0]
+        if checkbox_couleurs == True:
+            prix = prix+listdeprixparformat[1]
+        if checkbox_integral == True:
+            prix = prix+listdeprixparformat[2]
+        if checkbox_realismeplus == True:
+            prix = prix+listdeprixparformat[3]
+        if checkbox_couleurplus == True:
+            prix = prix+listdeprixparformat[4]
+        prix = prix+element_princ*listdeprixparformat[5]
+        prix = prix+element_sec*listdeprixparformat[6]
+        st.write("estimation du prix : "+str(prix)+" €")
 
 #image = Image.open("Carte_de_France_de_Mathias_Robert_de_Hesseln_de_1780_(haute_résolution).jpg")
 #st.image(image)
