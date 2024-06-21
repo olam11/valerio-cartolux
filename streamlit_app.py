@@ -93,13 +93,13 @@ with st.form("simulation"):
         st.write(f"###### Estimation du prix : {prix}")
         st.write("Pour :")
         for i in range(len(commande)):
-            st.write(commande[i])
+            st.write("    -"+commande[i])
             resume_estimation = resume_estimation+" "+commande[i]
         if element_princ != 0:
-            st.write(f"{element_princ} élément(s) principal(aux)")
+            st.write(f"    -{element_princ} élément(s) principal(aux)")
             resume_estimation = resume_estimation+" "+f"{element_princ} élément(s) principal(aux)"
         if element_sec != 0:
-            st.write(f"{element_sec} élément(s) secondaire(s)")
+            st.write(f"    -{element_sec} élément(s) secondaire(s)")
             resume_estimation = resume_estimation+" "+f"{element_sec} élément(s) secondaire(s)"
 #image = Image.open("Carte_de_France_de_Mathias_Robert_de_Hesseln_de_1780_(haute_résolution).jpg")
 #st.image(image)
