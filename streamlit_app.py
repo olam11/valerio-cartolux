@@ -2,7 +2,6 @@ import streamlit as st
 from PIL import Image
 import pandas as pd
 import numpy as np
-import random
 st.set_page_config(
     page_title='CARTOLUX',
     page_icon=':world_map:',
@@ -10,8 +9,8 @@ st.set_page_config(
     menu_items= {"about":"Ceci est un site web en cours de développement"},
     )
 st.title("CARTOLUX")
-st.write("###### ***:rainbow[Des carte comme vous les souhaitez !]***")
 st.write("""
+###### ***:rainbow[Des carte comme vous les souhaitez !]***\n         
 ****Vous avez plus d'un à essayer de dessiner une carte pendant longtemps...en vain. Mais aussi à en rêver pour décorer un espace, agrémenter vos œuvres littéraires etc.       
 Ne perdez plus votre temps! Dès aujourd'hui, faites confiance à CARTOLUX !****\n
 :red[Admirez] la délicatesse d'un trait précis et net retraçant la carte de votre choix.             
@@ -40,9 +39,8 @@ P.S. : en cas de besoin, contactez-nous!\n\n
     Format compatibles: A5; A4; A3; A2      
     Prix entre: 0.75 et 5 € + format\n   
     
-
+### TARIFS\n
 """)
-st.write("### TARIFS")
 df = {
         "format" : ["A5", "A4", "A3","A2"],
         "simple" : ["0,75 €", "1 €", "3 €","5,50 €"],
