@@ -2,6 +2,7 @@ import streamlit as st
 from PIL import Image
 import pandas as pd
 import numpy as np
+import pyperclip
 st.set_page_config(
     page_title='CARTOLUX',
     page_icon=':world_map:',
@@ -68,21 +69,37 @@ with st.form("simulation"):
     element_princ = st.slider("éléments princ.",0,10,0)
     element_sec = st.slider("éléments sec.",0,10,0)
     # Every form must have a submit button.
-    submitted = st.form_submit_button("Submit")
+    submitted = st.form_submit_button("Voir l'estimation")
     if submitted:
         listdeprixparformat = grille_de_prix[format]
         prix = listdeprixparformat[0]
+        commande = [f"format : {format}"]
         if checkbox_couleurs == True:
             prix = prix+listdeprixparformat[1]
+            commande.append("Deluxe couleurs")
         if checkbox_integral == True:
             prix = prix+listdeprixparformat[2]
+            commande.append("Deluxe intégral")
         if checkbox_realismeplus == True:
             prix = prix+listdeprixparformat[3]
+            commande.append("réalisme +")
         if checkbox_couleurplus == True:
             prix = prix+listdeprixparformat[4]
+            commande.append("couleur +")
         prix = prix+element_princ*listdeprixparformat[5]
         prix = prix+element_sec*listdeprixparformat[6]
-        st.write("estimation du prix : "+str(prix)+" €")
-
+        prix = str(prix)+" €"
+        resume_estimation = prix
+        st.write(f"###### Estimation du prix : {prix}")
+        st.write("Pour :")
+        for i in range(len(commande)):
+            st.write(commande[i])
+            resume_estimation = resume_estimation+" "+commande[i]
+        if element_princ != 0:
+            st.write(f"{element_princ} élément(s) principal(aux)")
+            resume_estimation = resume_estimation+" "+f"{element_princ} élément(s) principal(aux)"
+        if element_sec != 0:
+            st.write(f"{element_sec} élément(s) secondaire(s)")
+            resume_estimation = resume_estimation+" "+f"{element_sec} élément(s) secondaire(s)"
 #image = Image.open("Carte_de_France_de_Mathias_Robert_de_Hesseln_de_1780_(haute_résolution).jpg")
 #st.image(image)
