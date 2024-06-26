@@ -1,34 +1,33 @@
 import streamlit as st
 from PIL import Image
 import pandas as pd
-import numpy as np
-import pyperclip
+
+
 st.set_page_config(
     page_title='CARTOLUX',
     page_icon=':world_map:',
-    layout='wide',
-    menu_items= {"about":"Ceci est un site web en cours de développement"},
+    layout='wide'
     )
 st.title("CARTOLUX")
 st.write("""
-###### ***:rainbow[Des carte comme vous les souhaitez !]***\n         
-****Vous avez plus d'un à essayer de dessiner une carte pendant longtemps...en vain. Mais aussi à en rêver pour décorer un espace, agrémenter vos œuvres littéraires etc.       
+###### ***Des carte comme vous les souhaitez !***\n         
+****Vous avez plus d'une fois essayé de dessiner une carte, pendant longtemps...en vain. Mais aussi en rêver pour décorer un espace, agrémenter vos œuvres littéraires etc.       
 Ne perdez plus votre temps! Dès aujourd'hui, faites confiance à CARTOLUX !****\n
 :red[Admirez] la délicatesse d'un trait précis et net retraçant la carte de votre choix.             
 :red[Exaltez-vous] face au réalisme et à la beauté des œuvres que vous commanderez.      
-:red[Réjouissez-vous] du magnifique de nos cartes pour leur prix minimes.       
-:red[Soyez surpris] par la multiple possibilité de votre carte paramédiable.        
-:red[Soyez confiant] en vos cartographes polyvalents maîtrisant tous les types de carte.        
-:red[Jouissez] de nos nombreux styles et formats que vous offrentla carte qui vous convient le mieux.\n
+:red[Réjouissez-vous] de la beauté de nos cartes pour leur prix incroyablement bas.       
+:red[Soyez surpris] par les multiples possibilités d'une carte paramétrable.        
+:red[Ayez confiant] en vos cartographes polyvalents maîtrisant tous les types de carte.        
+:red[Jouissez] de nos nombreux styles et formats que vous offrent la carte qui vous convient le mieux.\n
 ### STYLES
 Nos nombreux styles vous permettront de créer votre carte sur-mesure.      
-Grâce à nos options, personnalisations et suppléments, ordonnez vôtre carte!   
+Grâce à nos options, personnalisations et suppléments, ordonnez votre carte!   
 P.S. : en cas de besoin, contactez-nous!\n\n
 
 1) ##### **Fantasy**  
     Le style fantasy est un style cartographique regroupant plus de concepts artistiques que cartographiques.   
     Le fantasy demeure cependant un style de cartographie. 
-    Celui-ci est parfaitement adapté aux cartes figurant et agrémentant la lecture dans un ouvrage imaginaire, fantasy ou autre
+    Celui-ci est parfaitement adapté aux cartes figurant et agrémentant la lecture dans un ouvrage imaginaire, fantasy ou autre.     
     Laissez vous séduire par sa complexité et sa sobriété unique. Un style parfaitement modulable selon vos envies.     
     Formats compatibles: A5; A4; A3     
     Prix: entre 0.50 et 2 € + format     \n
@@ -57,8 +56,9 @@ df = pd.DataFrame.from_dict(df, orient='index')
 df = df.transpose()
 st.dataframe(df, use_container_width=True,hide_index=True)
 grille_de_prix = {"A5":[0.75,0.50,0.50,0.25,0.50,0.50,0.25],"A4":[1,0.50,1,0.50,0.50,0.50,0.25],"A3":[3,1.50,2,1,0.50,0.50,0.25],"A2":[5.50,3,3.50,2.50,0.50,0.50,0.25]}
+st.write("**+ 0,25 € par heure de travail**")
+st.write("### SIMULATION")
 with st.form("simulation"):
-    st.write("### SIMULATION")
     format = st.selectbox(
     "###### le format :",
     ("A5", "A4", "A3","A2"))
