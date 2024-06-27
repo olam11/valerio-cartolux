@@ -2,12 +2,12 @@ import streamlit as st
 from PIL import Image
 import pandas as pd
 
-
 st.set_page_config(
     page_title='CARTOLUX',
     page_icon=':world_map:',
     layout='wide'
     )
+
 st.title("CARTOLUX")
 st.write("""
 ###### ***Des carte comme vous les souhaitez !***\n         
@@ -37,8 +37,13 @@ P.S. : en cas de besoin, contactez-nous!\n\n
     Son style de conception et son adaptabilité à tous les formats sont ses atouts majeurs.
     Laissez vous guider par ce style sans nul autre égal.       
     Format compatibles: A5; A4; A3; A2      
-    Prix entre: 0.75 et 5 € + format\n   
-    
+    Prix entre: 0.75 et 5 € + format\n      
+3) ##### **Minimalist**     
+    Ce style permet de réduire à l'essentiel le complexe (tout l'inverse d'un Atlas, il sera plus nu, moins vif mais très compréhensible et aéré).
+    Avec peu de traits et de tons, ce style permet d'identifier les forêts denses, les villes etc. Son charme est sa simplicité et sa façon de faire deviner la matière. Ses attributs permettent d'en faire un carte des plus maniables existantes : sa libre nomenclature, ses polices de texte associées, ses environnements,...      
+    Formats compatibles: A5; A4; A3; A2     
+    Prix: 0 €\n
+
 ### TARIFS\n
 """)
 df = {
@@ -56,7 +61,8 @@ df = pd.DataFrame.from_dict(df, orient='index')
 df = df.transpose()
 st.dataframe(df, use_container_width=True,hide_index=True)
 grille_de_prix = {"A5":[0.75,0.50,0.50,0.25,0.50,0.50,0.25],"A4":[1,0.50,1,0.50,0.50,0.50,0.25],"A3":[3,1.50,2,1,0.50,0.50,0.25],"A2":[5.50,3,3.50,2.50,0.50,0.50,0.25]}
-st.write("**+ 0,25 € par heure de travail**")
+st.write("##### **+ 0,25 € par heure de travail**")
+
 st.write("### SIMULATION")
 with st.form("simulation"):
     format = st.selectbox(
@@ -91,15 +97,17 @@ with st.form("simulation"):
         prix = str(prix)+" €"
         resume_estimation = prix
         st.write(f"###### Estimation du prix : {prix}")
+        st.write("**+ 0,25 € par heure de travail**")
         st.write("Pour :")
         for i in range(len(commande)):
-            st.write("    -"+commande[i])
+            st.write("-"+commande[i])
             resume_estimation = resume_estimation+" "+commande[i]
         if element_princ != 0:
-            st.write(f"    -{element_princ} élément(s) principal(aux)")
+            st.write(f"-{element_princ} élément(s) principal(aux)")
             resume_estimation = resume_estimation+" "+f"{element_princ} élément(s) principal(aux)"
         if element_sec != 0:
             st.write(f"    -{element_sec} élément(s) secondaire(s)")
             resume_estimation = resume_estimation+" "+f"{element_sec} élément(s) secondaire(s)"
+        
 #image = Image.open("Carte_de_France_de_Mathias_Robert_de_Hesseln_de_1780_(haute_résolution).jpg")
 #st.image(image)
