@@ -33,7 +33,7 @@ P.S. : en cas de besoin, contactez-nous!\n\n
     Prix: entre 0.50 et 2 € + format     \n
 2) ##### **Atlas**    
     Ce style de cartographie particulier est une compilation d'une carte politique, physique, routière, démographique, etc.
-    Contrairement à d'autres styles, une carte atlas sera fort lumineuse, vivement colorée avec des pigments choisis et gorgée d'informations (simplifiables ou pas selon vos choix).
+    Contrairement à d'autres styles, une carte atlas sera fort lumineuse, vivement taborée avec des pigments choisis et gorgée d'informations (simplifiables ou pas selon vos choix).
     Son style de conception et son adaptabilité à tous les formats sont ses atouts majeurs.
     Laissez vous guider par ce style sans nul autre égal.       
     Format compatibles: A5; A4; A3; A2      
@@ -109,5 +109,6 @@ with st.form("simulation"):
             st.write(f"    -{element_sec} élément(s) secondaire(s)")
             resume_estimation = resume_estimation+" "+f"{element_sec} élément(s) secondaire(s)"
         
-#image = Image.open("Carte_de_France_de_Mathias_Robert_de_Hesseln_de_1780_(haute_résolution).jpg")
-#st.image(image)
+# image = Image.open("IMG_2387.jpg")
+# ,"IMG_2388.jpg","IMG_2391.jpg"
+# st.image(image)
