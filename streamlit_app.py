@@ -41,14 +41,14 @@ fantasy = """1) ##### **Fantasy**
     Prix: entre 0.50 et 2 € + format     \n
 """
 
-atlas= """---
+atlas = """---
 2) ##### **Atlas**    
     Ce style de cartographie particulier est une compilation d'une carte politique, physique, routière, démographique, etc.
     Contrairement à d'autres styles, une carte atlas sera fort lumineuse, vivement taborée avec des pigments choisis et gorgée d'informations (simplifiables ou pas selon vos choix).
     Son style de conception et son adaptabilité à tous les formats sont ses atouts majeurs.
     Laissez vous guider par ce style sans nul autre égal.       
     Format compatibles: A5; A4; A3; A2      
-    Prix entre: 0.75 et 5 € + format\n     
+    Prix : entre 0.75 et 5 € + format\n     
 
 """    
      
@@ -57,9 +57,18 @@ minimalist = """---
     Ce style permet de réduire à l'essentiel le complexe (tout l'inverse d'un Atlas, il sera plus nu, moins vif mais très compréhensible et aéré).
     Avec peu de traits et de tons, ce style permet d'identifier les forêts denses, les villes etc. Son charme est sa simplicité et sa façon de faire deviner la matière. Ses attributs permettent d'en faire un carte des plus maniables existantes : sa libre nomenclature, ses polices de texte associées, ses environnements,...      
     Formats compatibles: A5; A4; A3; A2     
-    Prix: 0 €\n
+    Prix : 0 €\n
 """
+options = """---
+4) ##### **Options**    
+    1) ###### **Couleurs**        
+        Couleur+    
+        L'option couleur+ est l'une des deux options de couleurs.Les options de couleur indiquent un changement de technique et de matériel.L'option couleur+ garantit une majeur réflexion concernant le choix des couleurs et leur rôle dans la carte mais aussi l'utilisation de crayons de couleurs à l'eau pour un meilleur rendu final.   
+        Prix : 0,25 €\n
+"""
+
 st.write(intro)
+
 st.write(fantasy)
 col1,col2,col3 = st.columns(3)
 with col1:
@@ -68,18 +77,22 @@ with col2:
     afficher_image("IMG_2387.jpg")
 with col3:
     afficher_image("IMG_2392.jpg")
+    
 st.write(atlas)
 col3,col1,col2,col4 = st.columns([1,2.5,2,1],gap="large",vertical_alignment="center")
 with col1:
     afficher_image("IMG_2394.jpg")
 with col2:
     afficher_image("IMG_2395.jpg")
+    
 st.write(minimalist)
 col3,col1,col2,col4 = st.columns([1,2.5,2,1],gap="large",vertical_alignment="center")
 with col1:
     afficher_image("IMG_2388.jpg")
 with col2 :
     afficher_image("IMG_2391.jpg")
+
+st.write(options)
 
 st.write("---\n### TARIFS\n")
 
