@@ -65,6 +65,10 @@ options = """---
         Couleur+    
         L'option couleur+ est l'une des deux options de couleurs.Les options de couleur indiquent un changement de technique et de matériel.L'option couleur+ garantit une majeur réflexion concernant le choix des couleurs et leur rôle dans la carte mais aussi l'utilisation de crayons de couleurs à l'eau pour un meilleur rendu final.   
         Prix : 0,25 €\n
+        
+        Deluxe couleur      
+        Cette option, comme les autres options de couleur, n'est pas compatible avec tous les styles (ex.: Fantasy).
+        Le supplément Deluxe couleur est une version réduite du supplément Deluxe intégral. Le Deluxe couleur ne s'étend que sur le côté graphique coloré de la carte. Incluant la formule couleur+, se rajoute une autre technique: les feutres à l'eau (des tonalités plus faibles que les feutres à alcool mais quand même assez visibles. En cas de doute, je suis là pour répondre à toutes vos questions et vous aider à trouver la solution qui vous convient le mieux). Son autre avantage sera l'attention toute particulière portée à l'agencement des couleurs en fonction de leur présence et de leur rôle dans la carte, l'objectif étant d'obtenir un visuel final des plus raffinés où les couleurs créeent ensemble une parfaite harmonie.
 """
 
 st.write(intro)
