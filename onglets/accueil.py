@@ -2,14 +2,14 @@ import streamlit as st
 from PIL import Image
 from streamlit_carousel import carousel
 
-st.title("CARTOLUX")
+st.title("CARTOLUXE")
 intro = """
-###### ***:rainbow[Des cartes comme vous les souhaitez !]***\n  
+###### ***Des cartes comme vous les souhaitez !***\n  
 ---
 """
 suite_intro = """
 ****Vous avez plus d'une fois essayé de dessiner une carte, pendant longtemps...en vain. Mais aussi en rêver pour décorer un espace, agrémenter vos œuvres littéraires...      
-Ne perdez plus votre temps ! Dès aujourd'hui, faites confiance à CARTOLUX !****\n\n
+Ne perdez plus votre temps ! Dès aujourd'hui, faites confiance à CARTOLUXE !****\n\n
 :red[Admirez] la délicatesse d'un trait précis et net retraçant la carte de votre choix.             
 :red[Exaltez-vous] face au réalisme et à la beauté des œuvres que vous commanderez.      
 :red[Réjouissez-vous] de la beauté de nos cartes pour leur prix incroyablement bas.       
@@ -36,8 +36,9 @@ st.write(intro)
 col1,col2 = st.columns(2,vertical_alignment="top")
 with col1:
     st.write(suite_intro)
-    st.page_link(page="onglets/styles.py",label="Découvrir nos magnifiques styles",icon=":material/border_color:")
-    
+    # st.page_link(page="onglets/styles.py",label="Découvrir nos magnifiques styles",icon=":material/border_color:")
+    if st.button(":material/border_color: Découvrir nos magnifiques styles",use_container_width=False):
+        st.switch_page("onglets/styles.py")
 with col2:
     items = [
     dict(
@@ -77,7 +78,7 @@ with col2:
     ),
 ]
 
-            
+                
     carousel(items=items)
 
 

@@ -38,7 +38,10 @@ col1,col2 = st.columns([1,2],vertical_alignment='center')
 with col1: 
     st.subheader("Atlas")
     st.write(atlas)
-    st.page_link("onglets/commande.py", label="Commander", icon=":material/package:")
+    # st.page_link("onglets/commande.py", label="Commander", icon=":material/package:")
+    if st.button(":material/package: Commander",use_container_width=True,key="button_commander_1"):
+        st.switch_page("onglets/commande.py")
+        
 with col2:
     items = [
     dict(
@@ -60,7 +63,9 @@ col1,col2 = st.columns([1,2],vertical_alignment="center")
 with col1: 
     st.subheader("Minimalist")
     st.write(minimalist)
-    st.page_link("onglets/commande.py", label="Commander", icon=":material/package:")
+    # st.page_link("onglets/commande.py", label="Commander", icon=":material/package:")
+    if st.button(":material/package: Commander",use_container_width=True,key="button_commander_2"):
+        st.switch_page("onglets/commande.py")
 with col2:
     items = [
     dict(
@@ -82,7 +87,9 @@ col1,col2 = st.columns(2,vertical_alignment='center')
 with col1: 
     st.subheader("Fantasy")
     st.write(fantasy)
-    st.page_link("onglets/commande.py", label="Commander", icon=":material/package:")
+    # st.page_link("onglets/commande.py", label="Commander", icon=":material/package:")
+    if st.button(":material/package: Commander",use_container_width=True,key="button_commander_3"):
+        st.switch_page("onglets/commande.py")
 with col2:
     items = [
     dict(
@@ -102,5 +109,5 @@ with col2:
     ),]
     
     carousel(items=items)
-    
+
 

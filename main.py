@@ -6,6 +6,8 @@ st.set_page_config(
     page_icon=':world_map:',
     layout='wide'
     )
+
+    
 with st.sidebar:
     st.page_link(page="https://motdepassedelinfini.streamlit.app/",label="Le mot de passe de l'infini",icon="♾️")
     st.page_link(page="https://github.com/olam11",label="Mon Github",icon="🐙")
