@@ -2,3 +2,4 @@ streamlit
 pillow
 pyperclip
 streamlit-carousel
+sendgrid

@@ -1,5 +1,21 @@
 import streamlit as st
 import re
+import smtplib
+from email.mime.text import MIMEText
+def send_email(body,email_receiver,subject):
+    email_sender = st.secrets["email"]["adress"]
+
+    msg = MIMEText(body)
+    msg['From'] = email_sender
+    msg['To'] = email_receiver
+    msg['Subject'] = subject
+
+    server = smtplib.SMTP('smtp.gmail.com', 587)
+    server.starttls()
+    server.login(st.secrets["email"]["adress"],st.secrets["email"]["password"])
+    server.sendmail(email_sender, email_receiver, msg.as_string())
+    server.quit()
+
 
 def deluxe_integral_func():
     st.session_state.disabled = True
@@ -50,7 +66,10 @@ if options_réalisme == "Réalisme+" and st.session_state.disabled == False:
 
 deluxe_integral = st.toggle(label="Deluxe integral",help="?",on_change=deluxe_integral_func(),key="deluxe_integral",value=st.session_state.disabled)
 if deluxe_integral:
+    deluxe_integral_francais = "activé"
     prix_total = prix_total+grille_de_prix[format][2]
+else:
+    deluxe_integral_francais = "désactivé"
     
 col1,col2,col3 = st.columns([1,1,2],vertical_alignment="bottom")
 
@@ -67,13 +86,57 @@ prix_total_str = convertir_en_euro(prix_total)
 st.write(f"**Estimation du prix : {prix_total_str}**")
 st.divider()
 st.subheader("Commander")
+
+prenom_user = st.text_input("Votre prénom:red[*]")
+nom_user = st.text_input("Votre nom:red[*]")
+prenom_user = prenom_user.capitalize()
+nom_user = nom_user.capitalize()
+st.caption(":red[*]Pour un echange plus cordial avec votre cartographe")
 email_user = st.text_input("Votre email")
-if email_user: 
+commentaire = st.text_area("Personnalisation",max_chars=1000,placeholder="La description de votre carte...")
+if st.button("Commander pour "+prix_total_str) and email_user and prenom_user and nom_user: 
     if re.match(r"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$", email_user):
-        commentaire = st.text_area("Personnalisation",max_chars=1000,placeholder="La description de votre carte...")
-        if st.button("Commander pour "+prix_total_str):
-            st.caption("Impossible pour le moment")
-        
+        with st.spinner("En cours d'envoie..."):
+            try:
+                send_email(
+                    body=f"""
+    Une commande de {prenom_user} {nom_user}:   
+    style : {style}
+    format : {format}
+    options de couleurs : {couleurs_options}
+    option de réalisme : {options_réalisme}
+    deluxe intégral : {deluxe_integral_francais}
+    nombre d'éléments principaux : {str(nb_elements_princ)}
+    nombre d'éléments secondaires : {str(nb_elements_sec)}
+    commentaire de personnalisation :   
+    {commentaire}    
+    prix total : {prix_total_str}
+
+    Email de {prenom_user} {nom_user} : {email_user} 
+                    """,
+                    email_receiver = st.secrets["email"]["adress"],
+                    subject=f"Commande de {prenom_user} {nom_user}"
+                    )
+                send_email(
+                    body=f"""
+    Votre commande : 
+    {commentaire}  
+    En style {style}, en {format} avec les options:
+    Couleurs : {couleurs_options}
+    Réalisme : {options_réalisme}
+    Deluxe intégral : {deluxe_integral_francais}
+    Vons avez demandé {str(nb_elements_princ)} éléments principaux et {str(nb_elements_sec)} éléments secondaires, pour un total de {prix_total_str}
+
+    Cartoluxe
+
+    Contact : cartoluxe@gmail.com
+                    """,
+                    email_receiver = email_user,
+                    subject=f"Cartoluxe : confirmation votre commande"
+                    )
+                st.success("Commande envoyée 👍")
+            except Exception as e:
+                st.error(f"Erreur dans l'envoie de la commande :\n{e}")   
     else:
         st.caption(":red[Veuillez entrer une email valide !]")
         

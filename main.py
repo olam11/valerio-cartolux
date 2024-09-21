@@ -15,7 +15,8 @@ with st.sidebar:
     
 pages = [st.Page("onglets/accueil.py", title="Accueil",icon=":material/home:"),
         st.Page("onglets/styles.py", title="Styles",icon=":material/border_color:"),
-        st.Page("onglets/commande.py", title="Commande", icon=":material/package:")]
+        st.Page("onglets/commande.py", title="Commande", icon=":material/package:"),
+        st.Page("onglets/politique_de_confidentialite.py", title="Politique de confidentialité", icon=":material/lock:")]
 
 pg = st.navigation(pages)
 pg.run()
