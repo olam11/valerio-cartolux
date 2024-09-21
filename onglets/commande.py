@@ -100,36 +100,36 @@ if st.button("Commander pour "+prix_total_str) and email_user and prenom_user an
             try:
                 send_email(
                     body=f"""
-    Une commande de {prenom_user} {nom_user}:   
-    style : {style}
-    format : {format}
-    options de couleurs : {couleurs_options}
-    option de réalisme : {options_réalisme}
-    deluxe intégral : {deluxe_integral_francais}
-    nombre d'éléments principaux : {str(nb_elements_princ)}
-    nombre d'éléments secondaires : {str(nb_elements_sec)}
-    commentaire de personnalisation :   
-    {commentaire}    
-    prix total : {prix_total_str}
+Une commande de {prenom_user} {nom_user}:   
+style : {style}
+format : {format}
+options de couleurs : {couleurs_options}
+option de réalisme : {options_réalisme}
+deluxe intégral : {deluxe_integral_francais}
+nombre d'éléments principaux : {str(nb_elements_princ)}
+nombre d'éléments secondaires : {str(nb_elements_sec)}
+commentaire de personnalisation :   
+{commentaire}    
+prix total : {prix_total_str}
 
-    Email de {prenom_user} {nom_user} : {email_user} 
+Email de {prenom_user} {nom_user} : {email_user} 
                     """,
                     email_receiver = st.secrets["email"]["adress"],
                     subject=f"Commande de {prenom_user} {nom_user}"
                     )
                 send_email(
                     body=f"""
-    Votre commande : 
-    {commentaire}  
-    En style {style}, en {format} avec les options:
-    Couleurs : {couleurs_options}
-    Réalisme : {options_réalisme}
-    Deluxe intégral : {deluxe_integral_francais}
-    Vons avez demandé {str(nb_elements_princ)} éléments principaux et {str(nb_elements_sec)} éléments secondaires, pour un total de {prix_total_str}
+Votre commande : 
+{commentaire}  
+En style {style}, en {format} avec les options:
+Couleurs : {couleurs_options}
+Réalisme : {options_réalisme}
+Deluxe intégral : {deluxe_integral_francais}
+Vons avez demandé {str(nb_elements_princ)} éléments principaux et {str(nb_elements_sec)} éléments secondaires, pour un total de {prix_total_str}
 
-    Cartoluxe
+Cartoluxe
 
-    Contact : cartoluxe@gmail.com
+Contact : cartoluxe@gmail.com
                     """,
                     email_receiver = email_user,
                     subject=f"Cartoluxe : confirmation votre commande"
