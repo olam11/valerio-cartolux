@@ -44,12 +44,7 @@ with col2:
     dict(
         title=" ",
         text=" ",
-        img="images/IMG_2394.jpg",
-    ),
-    dict(
-        title=" ",
-        text=" ",
-        img="images/IMG_2395.jpg",
+        img="images/IMG_2392.jpg",
     ),
     dict(
         title=" ",
@@ -64,17 +59,27 @@ with col2:
     dict(
         title=" ",
         text=" ",
-        img="images/IMG_2392.jpg",
-    ),
-    dict(
-        title="",
-        text=" ",
         img="images/IMG_2388.jpg",
     ),
     dict(
-        title="",
+        title=" ",
         text=" ",
         img="images/IMG_2391.jpg",
+    ),
+    dict(
+        title="",
+        text=" ",
+        img="images/IMG_2394.jpg",
+    ),
+    dict(
+        title="",
+        text=" ",
+        img="images/IMG_2395.jpg",
+    ),
+    dict(
+        title="",
+        text=" ",
+        img="images/IMG_2396.jpg",
     ),
 ]
 
