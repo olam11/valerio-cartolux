@@ -3,6 +3,7 @@ import streamlit as st
 import re
 import smtplib
 from email.mime.text import MIMEText
+import random
 
 # fonction d'envoi d'email
 def send_email(body,email_receiver,subject):
@@ -114,23 +115,47 @@ commentaire = st.text_area("Personnalisation",max_chars=1000,placeholder="La des
 if st.button("Commander pour "+prix_total_str):
     if re.match(r"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$", email_user) and email_user:
         if prenom_user and nom_user:
-            
-            with st.spinner("En cours d'envoi..."):
+            with st.spinner("Envoi du code vérification..."):
+                
                 try:
+                    if "code" not in st.session_state:
+                        st.session_state.code = str(random.randint(100000,999999))
                     send_email(
-                        body=f"""Une commande de {prenom_user} {nom_user}:   style : {style}    format : {format}   options de couleurs : {couleurs_options}    option de réalisme : {options_réalisme}     deluxe intégral : {deluxe_integral_francais}    nombre d'éléments principaux : {str(nb_elements_princ)}     nombre d'éléments secondaires : {str(nb_elements_sec)}      commentaire de personnalisation :       {commentaire}      prix total : {prix_total_str}\nEmail de {prenom_user} {nom_user} : {email_user}""",
-                        email_receiver = "cartoluxe+commandes@gmail.com",
-                        subject=f"Commande de {prenom_user} {nom_user}"
-                        )
-                    send_email(
-                        body=f"""Votre commande :       {commentaire}       En style {style}, en {format} avec les options:     Couleurs : {couleurs_options}       Réalisme : {options_réalisme}       Deluxe intégral : {deluxe_integral_francais}    Nb d'éléments principaux : {str(nb_elements_princ)}     Nb d'éléments secondaires : {str(nb_elements_sec)}      Pour un total de {prix_total_str}\nCartoluxe        Contact : cartoluxe@gmail.com""",
-                        email_receiver = email_user,
-                        subject=f"Cartoluxe : confirmation de votre commande"
-                        )
-                    st.success("Commande envoyée 👍")
+                        body=f"""Votre code de vérification : {st.session_state.code}\nVous avez tenté de commander sur cartoluxe.streamlit.app !\nSi vous n'êtes pas à l'origine de cette commande ne faites rien.""",
+                        subject="Cartoluxe : code de vérification",
+                        email_receiver=email_user
+                    )
+                      
                 except Exception as e:
-                    st.error(f"Erreur dans l'envoie de la commande :\n{e}")   
-                    
+                    st.error(f"Erreur dans l'envoie du code de vérification :\n{e}")
+
+            st.write("On vous a envoyé un code de vérification, vérifiez vos mails !")
+            code_test = st.text_input("Code de vérification",max_chars=6)
+            print("1")
+            print(code_test)
+            print("2")
+            print(st.session_state.code)
+            button = st.button("Commander")
+            if button:
+                if st.session_state.code == code_test:
+                    print("coucou")
+                    with st.spinner("En cours d'envoi..."):
+                        try:
+                            send_email(
+                                body=f"""Une commande de {prenom_user} {nom_user}:   style : {style}    format : {format}   options de couleurs : {couleurs_options}    option de réalisme : {options_réalisme}     deluxe intégral : {deluxe_integral_francais}    nombre d'éléments principaux : {str(nb_elements_princ)}     nombre d'éléments secondaires : {str(nb_elements_sec)}      commentaire de personnalisation :       {commentaire}      prix total : {prix_total_str}\nEmail de {prenom_user} {nom_user} : {email_user}""",
+                                email_receiver = "cartoluxe+commandes@gmail.com",
+                                subject=f"Commande de {prenom_user} {nom_user}"
+                                )
+                            send_email(
+                                body=f"""Votre commande :       {commentaire}       En style {style}, en {format} avec les options:     Couleurs : {couleurs_options}       Réalisme : {options_réalisme}       Deluxe intégral : {deluxe_integral_francais}    Nb d'éléments principaux : {str(nb_elements_princ)}     Nb d'éléments secondaires : {str(nb_elements_sec)}      Pour un total de {prix_total_str}\nCartoluxe        Contact : cartoluxe@gmail.com""",
+                                email_receiver = email_user,
+                                subject=f"Cartoluxe : confirmation de votre commande"
+                                )
+                            st.success("Commande envoyée 👍")
+                        except Exception as e:
+                            st.error(f"Erreur dans l'envoie de la commande :\n{e}")
+            # elif code_test:
+                        # st.caption(":red[Code invalide]")
         else:
             st.caption(":red[Veuillez votre nom et prénom !]")
             
